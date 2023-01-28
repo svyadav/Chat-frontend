@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Moment from "react-moment";
+import env from "../environment"
 const { io } = require("socket.io-client");
+
 
 const ChatRoom = () => {
   const location = useLocation();
@@ -12,7 +14,7 @@ const ChatRoom = () => {
   const [allMessages, setMessages] = useState([]);
 
   useEffect(() => {
-    const socket = io("http://localhost:8000");
+    const socket = io(`${env.apiurl}`);
     setSocket(socket);
     socket.on("connect", () => {
 
